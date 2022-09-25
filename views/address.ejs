@@ -31,15 +31,14 @@
               <td></td>
               <td><%=lands.length %></td>
             </tr>
-          <% for (const count of counts) { %>
+            <% for (const count of counts) { %>
             <tr>
               <td></td>
-              <td><%= `${count.regionWeight} × ${count.regionWeight}` %></td>
-              <td><%=(count.level==2) ? 'Premium' : 'Normal' %></td>
+              <td><%= formatSize(count.regionWeight) %></td>
+              <td><%= formatType(count.level) %></td>
               <td><%=count.count %></td>
             </tr>
-        <% } %>
-
+            <% } %>
           </tbody>
         </table>
       </div>
@@ -60,9 +59,9 @@
           <% for (const land of lands) { %>
             <tr>
               <td><%=land.tokenId %></td>
-              <td><%=`(${land.x}, ${land.y})` %></td>
-              <td><%= `${land.regionWeight} × ${land.regionWeight}` %></td>
-              <td><%=(land.level==2) ? 'Premium' : 'Normal' %></td>
+              <td><%=formatLocation(land.x, land.y) %></td>
+              <td><%=formatSize(land.regionWeight) %></td>
+              <td><%=formatType(land.level) %></td>
               <td><a href="/adjacents/<%=land.tokenId %>">Check</a></td>
             </tr>
           <% } %>

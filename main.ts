@@ -9,21 +9,50 @@ import { Application, Router, Context } from "https://deno.land/x/oak@v11.1.0/mo
 import { renderFileToString } from 'https://deno.land/x/dejs@0.10.3/mod.ts';
 import type { Params } from 'https://deno.land/x/dejs@0.10.3/mod.ts';
 import { join } from "https://deno.land/std@0.157.0/path/mod.ts";
-
 import {
   getDate,
   getLands,
   getAdjacentLands,
   getLandByTokenId,
   getLandByLocation,
+  getOwnerInfoMap,
   getCounts,
   refresh
-} from "https://raw.githubusercontent.com/babyswaplover/landb/0.2.0/mod.ts";
+} from "https://raw.githubusercontent.com/babyswaplover/landb/0.2.1/mod.ts";
+import type { Land } from "https://raw.githubusercontent.com/babyswaplover/landb/0.2.1/mod.ts";
 
 // Listen port of Server
-const port = 3000;
+const PORT = 8000;
 
 const app = new Application();
+
+/**
+ * formats location like (x,y)
+ * @param x 
+ * @param y 
+ * @returns 
+ */
+function formatLocation(x:number, y:number):string {
+  return `(${x},${y})`;
+}
+
+/**
+ * formats Size like: NxN
+ * @param regionWeight 
+ * @returns 
+ */
+function formatSize(regionWeight:number):string {
+  return `${regionWeight}x${regionWeight}`;
+}
+
+/**
+ * formats type like: Normal/Premium
+ * @param level 
+ * @returns 
+ */
+function formatType(level:number):string {
+  return level==2 ? 'Premium' : 'Normal';
+}
 
 /**
  * renders HTML with template engine ejs
@@ -34,7 +63,13 @@ const app = new Application();
 async function render(context:Context, fileName:string, parameters:Params) {
   try {
     context.response.headers.set('Content-Type', 'text/html; charset=utf-8');
-    context.response.body = await renderFileToString(join('views', fileName), parameters || {});
+    context.response.body = await renderFileToString(
+      join('views', fileName),
+      Object.assign({
+        formatLocation,
+        formatSize,
+        formatType
+      }, parameters));
   } catch(e) {
     console.error(e.message);
   }
@@ -56,9 +91,25 @@ app.use(async (context, next)=>{
 const router = new Router();
 
 router.get('/', async (context) => {
+  const ownerInfo = getOwnerInfoMap();
+  const totalCounts = [...ownerInfo].reduce((totalCounts, entry)=>{
+    return entry[1].counts.reduce((_, count, index)=>{
+      totalCounts[index] = (totalCounts[index] ?? 0) + count
+      return totalCounts;
+    }, totalCounts);
+  }, <number[]>[]);
+  const sizes = totalCounts.reduce((sizes, count, index)=>{
+    if (count) {
+      sizes.push(index);
+    }
+    return sizes;
+  }, <number[]>[]);
+
   await render(context, "index.ejs", {
     date: getDate(),
-    counts: getCounts()
+    counts: getCounts(),
+    ownerInfo,
+    sizes
   });
 });
 
@@ -66,6 +117,25 @@ router.get('/address/:address', async (context) => {
   const address = context.params.address;
   const lands = getLands(address);
   await render(context, "address.ejs", {
+    date: getDate(),
+    address,
+    counts: getCounts(address),
+    lands
+  });
+});
+
+router.get('/address/:address/adjacents', async (context) => {
+  const address = context.params.address;
+  // Land with adjacents
+  interface Adjacent extends Land {
+    adjacents: Land[]
+  }
+  const lands = getLands(address);
+  for (const land of lands) {
+    const adjacents = getAdjacentLands(land);
+    (<Adjacent>land).adjacents = adjacents;
+  }
+  await render(context, "addressAdjacents.ejs", {
     date: getDate(),
     address,
     counts: getCounts(address),
@@ -100,6 +170,12 @@ app.use(router.routes());
 app.use(router.allowedMethods());
 
 
+export async function start(port:number) {
+  await app.listen({ port });
+}
+
 // Start listening
-console.log(`Listening.  http://localhost:${port}/`);
-await app.listen({ port });
+if (import.meta.main) {
+  console.log(`Listening.  http://localhost:${PORT}/`);
+  await start(PORT);
+}

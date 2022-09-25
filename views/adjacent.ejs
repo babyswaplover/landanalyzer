@@ -26,9 +26,9 @@
             <tr>
               <td class="font-monospace"><%=land.userAddress %></td>
               <td><%=land.tokenId %></td>
-              <td><%=`${land.regionWeight}×${land.regionWeight}` %></td>
-              <td><%=(land.level==2) ? 'Premium' : 'Normal' %></td>
-              <td><%=`(${land.x}, ${land.y})` %></td>
+              <td><%=formatSize(land.regionWeight) %></td>
+              <td><%=formatType(land.level) %></td>
+              <td><%=formatLocation(land.x, land.y) %></td>
             </tr>
           </tbody>
         </table>
@@ -50,10 +50,10 @@
           <tbody>
             <% for (const adjacent of adjacents) { %>
             <tr>
-              <td><%=`(${adjacent.x}, ${adjacent.y})` %></td>
+              <td><%=formatLocation(adjacent.x, adjacent.y) %></td>
               <td><%=adjacent.tokenId %></td>
-              <td><%=`${adjacent.regionWeight}×${adjacent.regionWeight}` %></td>
-              <td><%=(adjacent.level==2) ? 'Premium' : 'Normal' %></td>
+              <td><%=formatSize(adjacent.regionWeight) %></td>
+              <td><%=formatType(adjacent.level) %></td>
               <td class="font-monospace">
               <% if (land.userAddress == adjacent.userAddress) { %>
                 Owned
