@@ -20,7 +20,7 @@ $ cd landanalyzer
 ### Start server
 
 ```bash
-$ deno run --allow-net=0.0.0.0,ld-api.babyswap.io --allow-read=views src/server.ts
+$ deno run --allow-net=0.0.0.0,ld-api.babyswap.io --allow-read=views main.ts
 ```
 
 The land data of Baby Wonderland will be fetched when the program executes.  And the land data might be fetched and updated 30 minutes after last fetch.
@@ -30,7 +30,7 @@ The land data of Baby Wonderland will be fetched when the program executes.  And
 Access to the local server via Web browser.
 
 ```
-http://localhost:3000/
+http://localhost:8000/
 ```
 
 | Request path                   | Description                               |
