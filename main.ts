@@ -27,6 +27,16 @@ const PORT = 8000;
 const app = new Application();
 
 /**
+ * return location link of Baby Wonderland
+ * @param x 
+ * @param y 
+ * @returns URL
+ */
+function getLocationUrl(x:number, y:number):string {
+  return `https://land.babyswap.finance/land?x=${x}&y=${y}`;
+}
+
+/**
  * formats location like (x,y)
  * @param x 
  * @param y 
@@ -66,6 +76,7 @@ async function render(context:Context, fileName:string, parameters:Params) {
     context.response.body = await renderFileToString(
       join('views', fileName),
       Object.assign({
+        getLocationUrl,
         formatLocation,
         formatSize,
         formatType

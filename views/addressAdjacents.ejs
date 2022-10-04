@@ -68,7 +68,11 @@
             <tr>
               <!-- myland -->
               <td><%=land.tokenId %></td>
-              <td><%=formatLocation(land.x, land.y) %></td>
+              <td>
+                <a rel="noreferrer" href="<%=getLocationUrl(land.x, land.y) %>">
+                  <%=formatLocation(land.x, land.y) %>
+                </a>
+              </td>
               <td><%=formatSize(land.regionWeight) %></td>
               <td><%=formatType(land.level) %></td>
               <td style="text-align:right"><%=land.adjacents.length %></td>
@@ -88,7 +92,11 @@
                 <td></td>
                 <td></td>
                 <!-- adjacents -->
-                <td><%=formatLocation(adjacent.x, adjacent.y) %></td>
+                <td>
+                  <a rel="noreferrer" href="<%=getLocationUrl(adjacent.x, adjacent.y) %>">
+                    <%=formatLocation(adjacent.x, adjacent.y) %>
+                  </a>
+                </td>
                 <td><%=formatSize(adjacent.regionWeight) %></td>
                 <td><%=formatType(adjacent.level) %></td>
                 <td class="font-monospace">

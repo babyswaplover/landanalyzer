@@ -59,7 +59,11 @@
           <% for (const land of lands) { %>
             <tr>
               <td><%=land.tokenId %></td>
-              <td><%=formatLocation(land.x, land.y) %></td>
+              <td>
+                <a rel="noreferrer" href="<%=getLocationUrl(land.x, land.y) %>">
+                  <%=formatLocation(land.x, land.y) %>
+                </a>
+              </td>
               <td><%=formatSize(land.regionWeight) %></td>
               <td><%=formatType(land.level) %></td>
               <td><a href="/adjacents/<%=land.tokenId %>">Check</a></td>
