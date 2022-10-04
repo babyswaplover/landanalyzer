@@ -18,7 +18,7 @@
               <th>Address</th>
               <th>Size</th>
               <th>Type</th>
-              <th>Total Lands</th>
+              <th style="text-align:right">Total</th>
             </tr>
           </thead>
           <tbody>
@@ -29,14 +29,14 @@
               </td>
               <td></td>
               <td></td>
-              <td><%=lands.reduce((total, land)=>total + land.regionWeight**2, 0) %></td>
+              <td style="text-align:right"><%=lands.reduce((total, land)=>total + land.regionWeight**2, 0) %></td>
             </tr>
             <% for (const count of counts) { %>
             <tr>
               <td></td>
               <td><%= formatSize(count.regionWeight) %></td>
               <td><%= formatType(count.level) %></td>
-              <td><%=count.count %></td>
+              <td style="text-align:right"><%=count.count %></td>
             </tr>
             <% } %>
           </tbody>
