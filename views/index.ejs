@@ -21,10 +21,11 @@
   </head>
   <body>
     <div class="container">
-      <h1>Baby Wonderland Analyzer</h1>
+      <h2>Baby Wonderland Analyzer</h2>
+      <hr class="w-100">
       <h5 style="text-align:right">Fetched: <%=date %> (UTC)</h5>
       <div class="row">
-        <h2>Summary</h2>
+        <h3>Summary</h3>
         <table class="table table-striped">
           <thead>
             <tr>
@@ -45,7 +46,7 @@
         </table>
       </div>
       <div class="row">
-        <h2>Top Holders</h2>
+        <h3>Top Holders</h3>
         <table id="holderTable" class="table table-striped">
           <thead>
             <tr>
@@ -66,7 +67,7 @@
             <tr>
               <td><%= no++ %></td>
               <td class="font-monospace">
-                [<a rel="noreferrer" href="https://home.babyswap.finance/did/<%=info.userAddress %>">DID</a>]
+                [<a rel="noreferrer" href="<%=getDIDUrl(info.userAddres) %>">DID</a>]
                 <a href="/address/<%=info.userAddress %>"><%=info.userAddress %></a>
               </td>
               <% for (const size of sizes) { %>

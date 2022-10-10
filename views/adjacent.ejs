@@ -9,7 +9,8 @@
   </head>
   <body>
     <div class="container">
-      <h1>Baby Wonderland Analyzer</h1>
+      <h2>Baby Wonderland Analyzer</h2>
+      <hr class="w-100">
       <h5 style="text-align:right">Fetched: <%=date %> (UTC)</h5>
       <div class="row">
         <table class="table">
@@ -39,7 +40,7 @@
       </div>
 
       <div class="row">
-        <h2>Adjacents</h2>
+        <h3>Adjacents</h3>
         <table class="table table-striped">
           <thead>
             <tr>
@@ -66,7 +67,7 @@
               <% if (land.userAddress == adjacent.userAddress) { %>
                 Owned
               <% } else { %>
-                [<a rel="noreferrer" href="https://home.babyswap.finance/did/<%=adjacent.userAddress %>">DID</a>]
+                [<a rel="noreferrer" href="<%=getDIDUrl(adjacent.userAddress) %>">DID</a>]
                 <a href="/address/<%=adjacent.userAddress %>">
                   <%=adjacent.userAddress %>
                 </a>
@@ -74,7 +75,7 @@
               </td>
               <td>
               <% if (adjacent.onMarket==1) { %>
-                <a rel="noreferrer" href="https://market.babyswap.finance/nfts/collection/0x1fe7f243eb49f3b9575f51a2f9fba9fc2c1dd68d/<%=adjacent.tokenId %>">
+                <a rel="noreferrer" href="<%=getMarketUrl(adjacent.tokenId) %>">
                   <%=adjacent.tokenId %>
                 </a>
               <% } %>

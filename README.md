@@ -16,6 +16,7 @@ https://landanalyzer.deno.dev/
 | /                              |Summary of Lands                           |
 | /address/`<address>`           |Lands owned by address                     |
 | /address/`<address>`/adjacents |Lands owned by address and their adjacents |
+| /address/`<address>`/neighbors |Adjacents gorup by neighbor's address      |
 | /adjacents/`<tokenId>`         |Adjacents of the land                      |
 | /adjacents/`<x>`,`<y>`         |Adjacents of the land                      |
 

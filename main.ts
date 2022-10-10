@@ -15,16 +15,27 @@ import {
   getAdjacentLands,
   getLandByTokenId,
   getLandByLocation,
+  getNeighbors,
   getOwnerInfoMap,
   getCounts,
   refresh
-} from "https://raw.githubusercontent.com/babyswaplover/landb/0.2.1/mod.ts";
-import type { Land } from "https://raw.githubusercontent.com/babyswaplover/landb/0.2.1/mod.ts";
+} from "https://raw.githubusercontent.com/babyswaplover/landb/0.2.2/mod.ts";
+import type { Land } from "https://raw.githubusercontent.com/babyswaplover/landb/0.2.2/mod.ts";
 
 // Listen port of Server
 const PORT = 8000;
 
 const app = new Application();
+
+/**
+ * return DID link of Baby Wonderland
+ * @param x 
+ * @param y 
+ * @returns URL
+ */
+ function getDIDUrl(userAddress:string):string {
+  return `https://home.babyswap.finance/did/${userAddress}`;
+}
 
 /**
  * return location link of Baby Wonderland
@@ -34,6 +45,15 @@ const app = new Application();
  */
 function getLocationUrl(x:number, y:number):string {
   return `https://land.babyswap.finance/land?x=${x}&y=${y}`;
+}
+
+/**
+ * return market link of Baby Wonderland
+ * @param tokenId
+ * @returns URL
+ */
+ function getMarketUrl(tokenId:number):string {
+  return `https://market.babyswap.finance/nfts/collection/0x1fe7f243eb49f3b9575f51a2f9fba9fc2c1dd68d/<${tokenId}`;
 }
 
 /**
@@ -76,7 +96,9 @@ async function render(context:Context, fileName:string, parameters:Params) {
     context.response.body = await renderFileToString(
       join('views', fileName),
       Object.assign({
+        getDIDUrl,
         getLocationUrl,
+        getMarketUrl,
         formatLocation,
         formatSize,
         formatType
@@ -149,8 +171,17 @@ router.get('/address/:address/adjacents', async (context) => {
   await render(context, "addressAdjacents.ejs", {
     date: getDate(),
     address,
-    counts: getCounts(address),
     lands
+  });
+});
+
+router.get('/address/:address/neighbors', async (context) => {
+  const address = context.params.address;
+  
+  await render(context, "addressNeighbors.ejs", {
+    date: getDate(),
+    address,
+    neighbors: getNeighbors(address)
   });
 });
 
