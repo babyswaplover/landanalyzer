@@ -15,6 +15,7 @@ import {
   getCounts,
   getLands
 } from "../deps.ts";
+import type { Land } from "../deps.ts";
 import { Handler } from "./handler.tsx";
 import {
   LandAddress,
@@ -131,7 +132,7 @@ export class Address extends Handler {
             </tr>
           </thead>
           <tbody>
-          {props.lands.map((land)=>(
+          {props.lands.map((land:Land)=>(
             <tr>
               <td>{land.tokenId}</td>
               <td><LandLocation x={land.x} y={land.y} /></td>

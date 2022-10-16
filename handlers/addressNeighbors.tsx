@@ -99,7 +99,7 @@ export class AddressNeighbors extends Handler {
                   <td></td>
                   <td></td>
                 </tr>
-                {lands.map((land)=>(
+                {lands.map((land:Land)=>(
                   <tr>
                     {/*  neighbor */}
                     <td></td>

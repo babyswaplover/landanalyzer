@@ -116,7 +116,7 @@ export class AddressAdjacents extends Handler {
                 <td></td>
                 <td></td>
               </tr>
-              {land.adjacents.map((adjacent)=>(
+              {land.adjacents.map((adjacent:Land)=>(
               <tr>
                 {/* myland */}
                 <td></td>

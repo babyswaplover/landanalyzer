@@ -7,16 +7,34 @@ import {
   h,
 } from "../deps.ts";
 
+// Known Address
+const walletName = {
+  "0x3a952c1a235fe9ac5dc4baa2c0c73595ec5a70e8": "BabySwap",
+  "0x03eb3db6188d7f89031c580734162acac796594c": "CoinMarketCap",
+  "0x1d16d9a94bee3080521b55f94822b57a18797a0c": "BNB Chain",
+  "0x2e655e85c83cec7894e8cdcc134b9acb53acbec1": "",
+  "0x47f28b642aff0b12efb1c48ec55c731730283353": "",
+  "0x51b411c91964ecbb205db700703c1e7b68dc7e2d": "",
+  "0x70dd100d396c438f5dfccdbb07e59eb6885429c4": "Baby Wealthy Club",
+  "0x78293432a5dc600bbff6dc2919d6c7626b26c4ef": "",
+  "0x99f2a70a48e3761613b3ae4eb0c8022dac8930b4": "",
+  "0x9d85f34be395a63efa990191a6cab0cdfa96c3c0": "Binance",
+  "0xef87ad392125f18ba7dfc66c048216b99dba8b46": "ApolloX"
+};
+
 /**
  * LandAddress Component
- * @param props attribute:address
+ * @param props attribute:address, name(optional)
  * @returns 
  */
  export function LandAddress(props) {
+  const name = walletName[props.address];
   return (
     <span class="font-monospace">
-      <a rel="noreferrer" href={`https://home.babyswap.finance/did/${props.address}`}>[DID]</a>
       <a href={`/address/${props.address}`}>{props.address}</a>
+      &nbsp;
+      <a rel="noreferrer" href={`https://home.babyswap.finance/did/${props.address}`}>[DID]</a>
+      {props.name && name && <span>({name})</span>}
     </span>
   );
 }

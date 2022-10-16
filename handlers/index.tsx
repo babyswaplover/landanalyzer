@@ -122,7 +122,7 @@ export class Index extends Handler {
           <tr>
             <th>No</th>
             <th>Address</th>
-            {props.sizes.map((size)=>(
+            {props.sizes.map((size:number)=>(
               <th style="text-align:right">
                 { size == 0 ? 'Total' : <LandSize size={size} /> }
               </th>
@@ -133,7 +133,7 @@ export class Index extends Handler {
         {props.owners.map((info)=>(
             <tr>
               <td>{no++}</td>
-              <td><LandAddress address={info.userAddress} /></td>
+              <td><LandAddress address={info.userAddress} name={true} /></td>
               { props.sizes.map((size)=>(
                 <td style="text-align:right">{info.counts[size]}</td>
               ))}

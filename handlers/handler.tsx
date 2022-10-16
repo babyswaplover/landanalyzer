@@ -16,5 +16,5 @@ export abstract class Handler extends Component {
   /**
    * request handle
    */
-  public static handle(context:Context): Promise<unknown>;
+  public static handle(context:Context) {}
 }
