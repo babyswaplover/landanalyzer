@@ -105,7 +105,7 @@ export class AddressNeighbors extends Handler {
                     <td></td>
                     <td></td>
                     {/*  lands */}
-                    <td>{land.tokenId}</td>
+                    <td><LandOnMarket tokenId={land.tokenId} /></td>
                     <td><LandLocation x={land.x} y={land.y} /></td>
                     <td><LandSize size={land.regionWeight} /></td>
                     <td><LandType level={land.level} /></td>

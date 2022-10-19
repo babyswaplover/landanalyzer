@@ -132,7 +132,7 @@ export class Adjacents extends Handler {
             {props.adjacents.map((adjacent)=>(
               <tr>
                 <td><LandLocation x={adjacent.x} y={adjacent.y} /></td>
-                <td>{adjacent.tokenId}</td>
+                <td><LandOnMarket tokenId={adjacent.tokenId} /></td>
                 <td><LandSize size={adjacent.regionWeight} /></td>
                 <td><LandType level={adjacent.level} /></td>
                 <td>
