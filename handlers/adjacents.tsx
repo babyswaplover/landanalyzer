@@ -102,7 +102,7 @@ export class Adjacents extends Handler {
         <tbody>
           <tr>
             <td class="font-monospace">{land.userAddress}</td>
-            <td>{land.tokenId}</td>
+            <td><LandOnMarket tokenId={land.tokenId} /></td>
             <td><LandSize size={land.regionWeight} /></td>
             <td><LandType level={land.level} /></td>
             <td><LandLocation x={land.x} y={land.y} /></td>

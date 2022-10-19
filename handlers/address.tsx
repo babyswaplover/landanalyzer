@@ -20,6 +20,7 @@ import { Handler } from "./handler.tsx";
 import {
   LandAddress,
   LandLocation,
+  LandOnMarket,
   LandSize,
   LandType
  } from "./widgets.tsx";
@@ -134,7 +135,7 @@ export class Address extends Handler {
           <tbody>
           {props.lands.map((land:Land)=>(
             <tr>
-              <td>{land.tokenId}</td>
+              <td><LandOnMarket tokenId={land.tokenId} /></td>
               <td><LandLocation x={land.x} y={land.y} /></td>
               <td><LandSize size={land.regionWeight} /></td>
               <td><LandType level={land.level} /></td>
