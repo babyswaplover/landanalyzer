@@ -99,7 +99,7 @@ export class Address extends Handler {
           </thead>
           <tbody>
             <tr>
-              <td><LandAddress address={props.address} /></td>
+              <td><LandAddress address={props.address} name={true} /></td>
               <td></td>
               <td></td>
               <td style="text-align:right">{props.total}</td>

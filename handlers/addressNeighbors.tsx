@@ -90,7 +90,7 @@ export class AddressNeighbors extends Handler {
             {props.neighbors.map(([address, lands])=>(
               <Fragment>
                 <tr>
-                  <td><LandAddress address={address} /></td>
+                  <td><LandAddress address={address} name={true} /></td>
                   <td style="text-align:right">{lands.length}</td>
                   {/* lands */}
                   <td></td>

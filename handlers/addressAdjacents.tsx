@@ -131,7 +131,7 @@ export class AddressAdjacents extends Handler {
                 <td>
                   {land.userAddress == adjacent.userAddress
                     ? <span>owned</span>
-                    : <LandAddress address={adjacent.userAddress} />
+                    : <LandAddress address={adjacent.userAddress} name={true} />
                   }
                 </td>
                 <td>{adjacent.onMarket==1 && <LandOnMarket tokenId={adjacent.tokenId} />}</td>
