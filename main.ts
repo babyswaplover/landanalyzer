@@ -30,9 +30,49 @@ const UPDATE_INTERVAL = 30 * 60 * 1000; // 30 mins.
 app.use(async (context, next)=>{
   const lastFetched = getDate();
   if (lastFetched && Date.now() >= Date.parse(lastFetched) + UPDATE_INTERVAL) {
-    await refresh();
+    try {
+      await refresh();
+    } catch (e) {
+      console.warn(e);
+    }
   }
   await next();
+});
+
+// BASIC Auth
+let authMap = new Map<string,string>();
+if ((await Deno.permissions.query({name:"env", variable:"AUTH_USERS"})).state == "granted") {
+  (Deno.env.get("AUTH_USERS") || "").split(',').forEach((line)=>{
+    // user1/pass1,user2/pass2
+    const [key, value] = line.split('/');
+    authMap.set(key, value);
+  });
+}
+const publicPaths = ['/', '/favicon.ico'];
+app.use((context, next)=>{
+  if (!publicPaths.includes(context.request.url.pathname) && authMap.size > 0) {
+    const authorization = context.request.headers.get("Authorization");
+    if (authorization) {
+      try {
+        const [user, password] = atob(authorization.replace(/^Basic +/, "")).split(':');
+        if (authMap.get(user) == password) {
+          next();
+          return;
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    // BASIC Auth required
+    context.response.headers.set('WWW-Authenticate', 'Basic realm="Baby Wonderland Analyzer"');
+    context.response.headers.set('Content-Type', 'text/html; charset=utf-8');
+    context.response.status = 401;
+    context.response.body = '<html><body><h1>Unauthorized</h1></body></html>';
+    return;
+  } else {
+    next();
+  }
 });
 
 
