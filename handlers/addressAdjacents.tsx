@@ -22,7 +22,7 @@ import {
   LandAddress,
   LandLocation,
   LandSize,
-  LandType,
+  LandLevel,
   LandOnMarket
 } from "./widgets.tsx";
 
@@ -107,7 +107,7 @@ export class AddressAdjacents extends Handler {
                 <td><LandOnMarket tokenId={land.tokenId} /></td>
                 <td><LandLocation x={land.x} y={land.y} /></td>
                 <td><LandSize size={land.regionWeight} /></td>
-                <td><LandType level={land.level} /></td>
+                <td><LandLevel level={land.level} /></td>
                 <td style="text-align:right">{land.adjacents.length}</td>
                 {/* adjacents */}
                 <td></td>
@@ -127,7 +127,7 @@ export class AddressAdjacents extends Handler {
                 {/* adjacents */}
                 <td><LandLocation x={adjacent.x} y={adjacent.y} /></td>
                 <td><LandSize size={adjacent.regionWeight} /></td>
-                <td><LandType level={adjacent.level} /></td>
+                <td><LandLevel level={adjacent.level} /></td>
                 <td>
                   {land.userAddress == adjacent.userAddress
                     ? <span>owned</span>

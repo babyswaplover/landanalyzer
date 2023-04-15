@@ -15,6 +15,8 @@ export {
 
 // landb
 export {
+  calcProsperityPoint,
+  calcProsperityPoints,
   getDate,
   getLands,
   getAdjacentLands,

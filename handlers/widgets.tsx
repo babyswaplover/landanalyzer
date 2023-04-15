@@ -7,6 +7,16 @@ import {
   h,
 } from "../deps.ts";
 
+// landType (island)
+const LAND_TYPES = [
+  "Main Land",
+  "Divinity Land",
+  "",
+  "",
+  "",
+  ""
+];
+
 // Known Address
 const walletName = {
   "0x3872455d74befdebee37da608b262b01a16f5045": "BabySwap",
@@ -62,13 +72,24 @@ export function LandSize(props) {
 }
 
 /**
+ * LandLevel Component
+ * @param props attribute:level
+ * @returns 
+ */
+export function LandLevel(props) {
+  return (
+    <span>{props.level==2 ? 'Premium' : 'Normal'}</span>
+  )
+}
+
+/**
  * LandType Component
  * @param props attribute:level
  * @returns 
  */
 export function LandType(props) {
   return (
-    <span>{props.level==2 ? 'Premium' : 'Normal'}</span>
+    <span>{ LAND_TYPES[props.landType]}</span>
   )
 }
 

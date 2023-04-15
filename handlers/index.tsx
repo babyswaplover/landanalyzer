@@ -19,6 +19,7 @@ import { Handler } from "./handler.tsx";
 import {
   LandAddress,
   LandSize,
+  LandLevel,
   LandType
 } from "./widgets.tsx";
 
@@ -46,7 +47,7 @@ export class Index extends Handler {
     context.response.body = renderSSR(
       <Index
         date={getDate()}
-        counts={getCounts()}
+        counts={getCounts(undefined, true)}
         owners={owners}
         sizes={sizes}
       />
@@ -87,23 +88,58 @@ export class Index extends Handler {
   }
 
   summary(props) {
+    // getCounts() -> [{landType, regionWeight, level, count}...]の内容を{landType, regionWeight}でまとめる
+    const rows:{[key:string]: number}[] = [];
+    let last:{[key:string]: number}|undefined;
+    for (const count of props.counts) {
+      if (last &&
+          last.landType     == count.landType &&
+          last.regionWeight == count.regionWeight) {
+        switch (count.level) {
+          case 1: // normal
+            last.normal += count.count;
+            break;
+          case 2: // premium
+            last.premium += count.count;
+            break;
+          default:
+            // TODO
+        }
+        last.total += count.count;
+      } else {
+        // Append new row
+        last = {
+          landType: count.landType,
+          regionWeight: count.regionWeight,
+          normal: (count.level == 1) ? count.count : 0,
+          premium: (count.level == 2) ? count.count : 0,
+          total: count.count
+        };
+        rows.push(last);
+      }
+    }
+
     return (
       <div class="row">
       <h3>Summary</h3>
       <table class="table table-striped">
         <thead>
           <tr>
+            <th>Island</th>
             <th>Size</th>
-            <th>Type</th>
+            <th style="text-align:right">Normal</th>
+            <th style="text-align:right">Premium</th>
             <th style="text-align:right">Total</th>
           </tr>
         </thead>
         <tbody>
-          {props.counts.map((count)=>(
+          {rows.map((row)=>(
             <tr>
-              <td><LandSize size={count.regionWeight} /></td>
-              <td><LandType level={count.level} /></td>
-              <td style="text-align:right">{count.count}</td>
+              <td><LandType landType={row.landType} /></td>
+              <td><LandSize size={row.regionWeight} /></td>
+              <td style="text-align:right">{row.normal}</td>
+              <td style="text-align:right">{row.premium}</td>
+              <td style="text-align:right">{row.total}</td>
             </tr>
           ))}
         </tbody>

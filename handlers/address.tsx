@@ -22,7 +22,7 @@ import {
   LandLocation,
   LandOnMarket,
   LandSize,
-  LandType
+  LandLevel
  } from "./widgets.tsx";
 
 export class Address extends Handler {
@@ -108,7 +108,7 @@ export class Address extends Handler {
               <tr>
               <td></td>
               <td><LandSize size={count.regionWeight} /></td>
-              <td><LandType level={count.level} /></td>
+              <td><LandLevel level={count.level} /></td>
               <td style="text-align:right">{count.count}</td>
             </tr>
             ))}
@@ -138,7 +138,7 @@ export class Address extends Handler {
               <td><LandOnMarket tokenId={land.tokenId} /></td>
               <td><LandLocation x={land.x} y={land.y} /></td>
               <td><LandSize size={land.regionWeight} /></td>
-              <td><LandType level={land.level} /></td>
+              <td><LandLevel level={land.level} /></td>
               <td><a href={`/adjacents/${land.tokenId}`}>Check</a></td>
             </tr>
           ))}
