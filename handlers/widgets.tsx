@@ -11,7 +11,7 @@ import {
 const LAND_TYPES = [
   "Main Land",
   "Divinity Land",
-  "",
+  "Wizard Land",
   "",
   "",
   ""
@@ -22,12 +22,12 @@ const walletName = {
   "0x3872455d74befdebee37da608b262b01a16f5045": "BabySwap",
   "0x03eb3db6188d7f89031c580734162acac796594c": "CoinMarketCap",
   "0x1d16d9a94bee3080521b55f94822b57a18797a0c": "BNB Chain",
-  "0x2e655e85c83cec7894e8cdcc134b9acb53acbec1": "",
-  "0x47f28b642aff0b12efb1c48ec55c731730283353": "",
+  "0x2e655e85c83cec7894e8cdcc134b9acb53acbec1": "DEGO",
+  "0x47f28b642aff0b12efb1c48ec55c731730283353": "BurgerCities",
   "0x51b411c91964ecbb205db700703c1e7b68dc7e2d": "",
   "0x70dd100d396c438f5dfccdbb07e59eb6885429c4": "Baby Wealthy Club",
   "0x78293432a5dc600bbff6dc2919d6c7626b26c4ef": "CryptoKit",
-  "0x99f2a70a48e3761613b3ae4eb0c8022dac8930b4": "",
+  "0x99f2a70a48e3761613b3ae4eb0c8022dac8930b4": "SecondLive",
   "0x9d85f34be395a63efa990191a6cab0cdfa96c3c0": "Binance",
   "0xef87ad392125f18ba7dfc66c048216b99dba8b46": "ApolloX"
 };
