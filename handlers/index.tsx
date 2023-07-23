@@ -71,7 +71,11 @@ export class Index extends Handler {
         </head>
         <body>
           <div class="container">
-            <h2>Baby Wonderland Analyzer</h2>
+            <h2>Baby Wonderland Analyzer
+              <span style="font-size:14pt; text-align:right; margin-left:3em; vertical-align:bottom;">
+                Source: <a href="https://github.com/babyswaplover/landanalyzer">https://github.com/babyswaplover/landanalyzer</a>
+              </span>
+            </h2>
             <hr class="w-100" />
             <h5 style="text-align:right">Fetched: {this.props.date} (UTC)</h5>
             <this.summary

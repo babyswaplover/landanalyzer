@@ -26,7 +26,7 @@ export {
   getOwnerInfoMap,
   getCounts,
   refresh
-} from "https://raw.githubusercontent.com/babyswaplover/landb/0.2.9/mod.ts";
+} from "https://raw.githubusercontent.com/babyswaplover/landb/main/mod.ts";
 export type {
   Land
-} from "https://raw.githubusercontent.com/babyswaplover/landb/0.2.9/mod.ts";
+} from "https://raw.githubusercontent.com/babyswaplover/landb/main/mod.ts";

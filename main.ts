@@ -19,6 +19,7 @@ import { Address } from "./handlers/address.tsx";
 import { Adjacents } from "./handlers/adjacents.tsx";
 import { AddressAdjacents } from "./handlers/addressAdjacents.tsx";
 import { AddressNeighbors } from "./handlers/addressNeighbors.tsx";
+import { FindMerge } from "./handlers/findmerge.tsx";
 
 // Listen port of Server
 const PORT = 8000;
@@ -83,7 +84,8 @@ for (const handler of [
   Address,
   Adjacents,
   AddressAdjacents,
-  AddressNeighbors
+  AddressNeighbors,
+  FindMerge
 ]) {
   switch (handler.method) {
     case "GET":
