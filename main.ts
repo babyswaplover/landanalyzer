@@ -46,7 +46,9 @@ if ((await Deno.permissions.query({name:"env", variable:"AUTH_USERS"})).state ==
   (Deno.env.get("AUTH_USERS") || "").split(',').forEach((line)=>{
     // user1/pass1,user2/pass2
     const [key, value] = line.split('/');
-    authMap.set(key, value);
+    if (key) {
+      authMap.set(key, value);
+    }
   });
 }
 const publicPaths = ['/', '/favicon.ico'];
