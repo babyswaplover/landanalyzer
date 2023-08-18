@@ -7,7 +7,7 @@ This is an example of [landb](https://github.com/babyswaplover/landb) library.  
 ## Sample
 
 This sample is deployed here:  
-https://landanalyzer.deno.dev/
+[https://landanalyzer.deno.dev/](https://landanalyzer.deno.dev/)
 
 ### Page samples
 
