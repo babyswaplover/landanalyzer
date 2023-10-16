@@ -27,10 +27,10 @@ const walletName = {
   "0xe023d25dc2b8edc724e9d2a77b961043d2f9a8a4": "",
   "0x51b411c91964ecbb205db700703c1e7b68dc7e2d": "Poop Finance",
   "0x70dd100d396c438f5dfccdbb07e59eb6885429c4": "Baby Wealthy Club",
-  "0x78293432a5dc600bbff6dc2919d6c7626b26c4ef": "CryptoKit",
+  "0x78293432a5dc600bbff6dc2919d6c7626b26c4ef": "",
   "0x99f2a70a48e3761613b3ae4eb0c8022dac8930b4": "",
   "0x9d85f34be395a63efa990191a6cab0cdfa96c3c0": "Binance",
-  "0xef87ad392125f18ba7dfc66c048216b99dba8b46": "ApolloX"
+  "0xef87ad392125f18ba7dfc66c048216b99dba8b46": ""
 };
 
 /**
