@@ -9,6 +9,8 @@ This is an example of [landb](https://github.com/babyswaplover/landb) library.  
 This sample is deployed here:  
 [https://landanalyzer.deno.dev/](https://landanalyzer.deno.dev/)
 
+※Server errors might occur due to the quota of Deno Deploy for free.
+
 ### Page samples
 
 | Request path                   | Description                               |
