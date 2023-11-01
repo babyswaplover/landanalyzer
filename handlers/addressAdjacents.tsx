@@ -20,6 +20,7 @@ import type { Land } from "../deps.ts";
 import { Handler } from "./handler.tsx";
 import {
   LandAddress,
+  LandType,
   LandLocation,
   LandSize,
   LandLevel,
@@ -87,6 +88,7 @@ export class AddressAdjacents extends Handler {
             <tr>
               {/* myland */}
               <th>TokenId</th>
+              <th>Island</th>
               <th>Location</th>
               <th>Size</th>
               <th>Type</th>
@@ -105,6 +107,7 @@ export class AddressAdjacents extends Handler {
               <tr>
                 {/* myland */}
                 <td><LandOnMarket tokenId={land.tokenId} /></td>
+                <td><LandType landType={land.landType} /></td>
                 <td><LandLocation x={land.x} y={land.y} /></td>
                 <td><LandSize size={land.regionWeight} /></td>
                 <td><LandLevel level={land.level} /></td>
@@ -119,6 +122,7 @@ export class AddressAdjacents extends Handler {
               {land.adjacents.map((adjacent:Land)=>(
               <tr>
                 {/* myland */}
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
