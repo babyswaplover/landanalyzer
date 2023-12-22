@@ -3,7 +3,7 @@ export {
   Application,
   Router,
   Context
-} from "https://deno.land/x/oak@v12.1.0/mod.ts";
+} from "https://deno.land/x/oak@v12.6.1/mod.ts";
 
 // nano_jsx
 export {
@@ -11,7 +11,7 @@ export {
   renderSSR,
   Component,
   Fragment
-} from 'https://deno.land/x/nano_jsx@v0.0.37/mod.ts'
+} from 'https://deno.land/x/nano_jsx@v0.1.0/mod.ts'
 
 // landb
 export {
